@@ -1,0 +1,20 @@
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.textContainer {
+  width: 50%;
+  font-size: 20px;
+  text-align: justify;
+}
+
+.li:first-child {
+  margin-bottom: 10px;
+}
+
+.span {
+  font-weight: 600;
+}
