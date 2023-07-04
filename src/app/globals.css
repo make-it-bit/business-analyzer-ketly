@@ -42,3 +42,68 @@ a {
 main {
   margin: 0 25px 50px 25px;
 }
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-heading {
+  width: 45%;
+  min-width: 465px;
+  font-size: 25px;
+  font-weight: 600;
+  text-align: center;
+  color: #e4c9b0;
+}
+
+span {
+  font-style: italic;
+  text-decoration: underline;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  min-width: 465px;
+  background-color: #9fb5de;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: #64646f33 0px 7px 29px 0px;
+}
+
+label {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+input {
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+input[type='file'] {
+  padding: 0;
+  margin-top: 5px;
+}
+
+.analyze-button {
+  height: 45px;
+  font-size: 18px;
+  color: #e4c9b0;
+  background-color: #003559;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.analyze-button:active {
+  transform: scale(0.95);
+}
