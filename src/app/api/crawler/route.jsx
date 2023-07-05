@@ -55,17 +55,7 @@ const fetchData = async (businessName) => {
           }
         }
       }
-      const generalDataObject = {};
-      for (const [key, value] of generalDataMap) {
-        newKey = key.replace('\n', '');
-        const valuePieces = value.split('\n');
-        let newValue = '';
-        for (let i = 0; i < valuePieces.length; i++) {
-          newValue += ` ${valuePieces[i].trim()}`;
-        }
-        generalDataObject[newKey] = newValue.trim();
-      }
-      return generalDataObject;
+      return mapToObject(generalDataMap);
     });
 
     const contactInfo = await page.evaluate(() => {
@@ -79,17 +69,7 @@ const fetchData = async (businessName) => {
           );
         }
       }
-      const contactDataObject = {};
-      for (const [key, value] of contactDataMap) {
-        newKey = key.replace('\n', '');
-        const valuePieces = value.split('\n');
-        let newValue = '';
-        for (let i = 0; i < valuePieces.length; i++) {
-          newValue += ` ${valuePieces[i].trim()}`;
-        }
-        contactDataObject[newKey] = newValue.trim();
-      }
-      return contactDataObject;
+      return mapToObject(contactDataMap);
     });
 
     const taxInfo = await page.evaluate(() => {
@@ -105,17 +85,7 @@ const fetchData = async (businessName) => {
           );
         }
       }
-      const taxDataObject = {};
-      for (const [key, value] of taxDataMap) {
-        newKey = key.replace('\n', '');
-        const valuePieces = value.split('\n');
-        let newValue = '';
-        for (let i = 0; i < valuePieces.length; i++) {
-          newValue += ` ${valuePieces[i].trim()}`;
-        }
-        taxDataObject[newKey] = newValue.trim();
-      }
-      return taxDataObject;
+      return mapToObject(taxDataMap);
     });
 
     data.push(generalInfo);
@@ -128,4 +98,18 @@ const fetchData = async (businessName) => {
     console.log('error: ', error);
     return;
   }
+};
+
+const mapToObject = (map) => {
+  const object = {};
+  for (const [key, value] of map) {
+    newKey = key.replace('\n', '');
+    const valuePieces = value.split('\n');
+    let newValue = '';
+    for (let i = 0; i < valuePieces.length; i++) {
+      newValue += ` ${valuePieces[i].trim()}`;
+    }
+    object[newKey] = newValue.trim();
+  }
+  return object;
 };
