@@ -9,7 +9,7 @@ const Form1 = () => {
     event.preventDefault();
     const businessName = event.target.name.value;
     const businessLink = event.target.link.value;
-    const response = await fetch(`/api/crawler?businessName=${businessName}&businessLink=${businessLink}`);
+    const response = await fetch(`/api/crawler?businessName=${businessName}`);
     const data = await response.json();
     console.log(data);
     return data;
@@ -18,8 +18,8 @@ const Form1 = () => {
   return (
     <>
       <p className="form-heading">
-        Choose this option below, if you&apos;d like to get additional information just about <span>one business</span>.
-        We will perform a Google Lighthouse analysis on the chosen business too!
+        Choose this option below, if you&apos;d like to get additional information just about <span>one business</span>. We will perform a Google
+        Lighthouse analysis on the chosen business too!
       </p>
       <form onSubmit={handleSubmit}>
         <label id="business-name-label" htmlFor="business-name-input">
