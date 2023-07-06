@@ -1,27 +1,18 @@
 'use client';
 import { useState } from 'react';
+import Link from 'next/link';
 
 const Form1 = () => {
   const [businessName, setBusinessName] = useState('');
   const [businessLink, setBusinessLink] = useState('');
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const businessName = event.target.name.value;
-    const businessLink = event.target.link.value;
-    const response = await fetch(`/api/crawler?businessName=${businessName}`);
-    const data = await response.json();
-    console.log(data);
-    return data;
-  };
-
   return (
     <>
       <p className="form-heading">
-        Choose this option below, if you&apos;d like to get additional information just about <span>one business</span>. We will perform a Google
-        Lighthouse analysis on the chosen business too!
+        Choose this option below, if you&apos;d like to get additional information just about <span className="span1">one business</span>. We
+        will perform a Google Lighthouse analysis on the chosen business too!
       </p>
-      <form onSubmit={handleSubmit}>
+      <form>
         <label id="business-name-label" htmlFor="business-name-input">
           Enter the name of the business you&apos;re interested in:
         </label>
@@ -44,9 +35,9 @@ const Form1 = () => {
           onChange={(event) => setBusinessLink(event.target.value)}
           required
         ></input>
-        <button type="submit" className="analyze-button">
+        <Link href={`/results?businessName=${businessName}`} className="analyze-button">
           ANALYZE
-        </button>
+        </Link>
       </form>
     </>
   );

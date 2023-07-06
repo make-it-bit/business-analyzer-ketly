@@ -8,6 +8,26 @@ body {
   min-height: 100vh;
 }
 
+main {
+  margin: 0 25px 50px 25px;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.spinner {
+  border: 4px solid #0000001a;
+  border-left-color: #003559;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
 .header-container {
   display: flex;
   flex-direction: column;
@@ -39,10 +59,6 @@ a {
   margin: 0 15px 0 15px;
 }
 
-main {
-  margin: 0 25px 50px 25px;
-}
-
 .form-container {
   display: flex;
   flex-direction: column;
@@ -59,7 +75,7 @@ main {
   color: #e4c9b0;
 }
 
-span {
+.span1 {
   font-style: italic;
   text-decoration: underline;
 }
@@ -94,11 +110,12 @@ input[type='file'] {
 }
 
 .analyze-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 45px;
   font-size: 18px;
-  color: #e4c9b0;
   background-color: #003559;
-  border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s;
@@ -106,4 +123,74 @@ input[type='file'] {
 
 .analyze-button:active {
   transform: scale(0.95);
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-container {
+  width: 50%;
+  font-size: 20px;
+  text-align: justify;
+}
+
+li:first-child {
+  margin-bottom: 10px;
+}
+
+.span2 {
+  font-weight: 600;
+  font-style: normal;
+}
+
+.data-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1,
+h2 {
+  margin-top: 0;
+}
+
+h3 {
+  text-align: center;
+}
+
+table {
+  width: 700px;
+  background-color: #9fb5de;
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 15px;
+  box-shadow: #64646f33 0px 7px 29px 0px;
+}
+
+th,
+td {
+  font-size: 18px;
+  text-align: left;
+}
+
+.error-container {
+  text-align: center;
+}
+
+.error-container p {
+  font-size: 20px;
+}
+
+.error-container p:first-child {
+  color: #a10000;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }

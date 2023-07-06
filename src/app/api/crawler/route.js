@@ -5,15 +5,13 @@ export const GET = async (request) => {
   const { searchParams } = new URL(request.url);
   const businessName = searchParams.get('businessName');
   const data = await fetchData(businessName);
-  console.log('data', data);
-  return NextResponse.json('');
+  return NextResponse.json(data);
 };
 
 const fetchData = async (businessName) => {
-  let data = [];
   try {
     const browser = await puppeteer.launch({
-      headless: true,
+      headless: 'new',
       defaultViewport: null,
     });
     const page = await browser.newPage();
@@ -37,6 +35,8 @@ const fetchData = async (businessName) => {
     });
     await new Promise((resolve) => setTimeout(resolve, 3000));
 
+    let data = [];
+
     const generalInfo = await page.evaluate(() => {
       const generalDataMap = new Map([]);
       const generalInfoSection = document.querySelector('div.ar__center__bg > div > div.card-group.row > div:nth-child(1) > div:nth-child(1)');
@@ -55,7 +55,17 @@ const fetchData = async (businessName) => {
           }
         }
       }
-      return mapToObject(generalDataMap);
+      const generalDataObject = {};
+      for (const [key, value] of generalDataMap) {
+        newKey = key.replace('\n', '');
+        const valuePieces = value.split('\n');
+        let newValue = '';
+        for (let i = 0; i < valuePieces.length; i++) {
+          newValue += ` ${valuePieces[i].trim()}`;
+        }
+        generalDataObject[newKey] = newValue.trim();
+      }
+      return generalDataObject;
     });
 
     const contactInfo = await page.evaluate(() => {
@@ -69,7 +79,17 @@ const fetchData = async (businessName) => {
           );
         }
       }
-      return mapToObject(contactDataMap);
+      const contactDataObject = {};
+      for (const [key, value] of contactDataMap) {
+        newKey = key.replace('\n', '');
+        const valuePieces = value.split('\n');
+        let newValue = '';
+        for (let i = 0; i < valuePieces.length; i++) {
+          newValue += ` ${valuePieces[i].trim()}`;
+        }
+        contactDataObject[newKey] = newValue.trim();
+      }
+      return contactDataObject;
     });
 
     const taxInfo = await page.evaluate(() => {
@@ -85,7 +105,17 @@ const fetchData = async (businessName) => {
           );
         }
       }
-      return mapToObject(taxDataMap);
+      const taxDataObject = {};
+      for (const [key, value] of taxDataMap) {
+        newKey = key.replace('\n', '');
+        const valuePieces = value.split('\n');
+        let newValue = '';
+        for (let i = 0; i < valuePieces.length; i++) {
+          newValue += ` ${valuePieces[i].trim()}`;
+        }
+        taxDataObject[newKey] = newValue.trim();
+      }
+      return taxDataObject;
     });
 
     data.push(generalInfo);
@@ -95,21 +125,7 @@ const fetchData = async (businessName) => {
     await browser.close();
     return data;
   } catch (error) {
-    console.log('error: ', error);
+    console.log(error);
     return;
   }
-};
-
-const mapToObject = (map) => {
-  const object = {};
-  for (const [key, value] of map) {
-    newKey = key.replace('\n', '');
-    const valuePieces = value.split('\n');
-    let newValue = '';
-    for (let i = 0; i < valuePieces.length; i++) {
-      newValue += ` ${valuePieces[i].trim()}`;
-    }
-    object[newKey] = newValue.trim();
-  }
-  return object;
 };
