@@ -7,15 +7,16 @@ const Form2 = () => {
   const [businessFile, setBusinessFile] = useState('');
 
   const handleClick = () => {
-    console.log('here');
     Papa.parse(businessFile, {
       header: true,
       skipEmptyLines: true,
+      encoding: 'ISO-8859-1',
       complete: function (results) {
         setBusinessFile(results.data);
-        console.log(results.data);
+        sessionStorage.setItem('businessData', JSON.stringify(results.data));
       },
     });
+    return;
   };
 
   return (

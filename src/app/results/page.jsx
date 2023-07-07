@@ -6,7 +6,6 @@ import Result2 from '../components/Result2';
 
 const ResultsPage = () => {
   const [businessName, setBusinessName] = useState('');
-  console.log('businessName: ', businessName);
   const [isBusinessName, setIsBusinessName] = useState(false);
   const searchParams = useSearchParams();
 
