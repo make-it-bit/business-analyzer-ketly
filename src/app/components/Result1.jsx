@@ -26,7 +26,7 @@ const Result1 = ({ businessName }) => {
         const response = await fetch(`/api/crawler?businessName=${businessName}`).then((response) => response.json());
         setBusinessData(response);
         setIsLoading(false);
-        return data;
+        return;
       } catch (error) {
         setIsLoading(false);
         setIsError(true);
