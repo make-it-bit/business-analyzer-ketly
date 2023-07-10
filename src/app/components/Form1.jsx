@@ -2,19 +2,16 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
-const Form1 = () => {
+const Form1 = async ({ form_title, input1_title, input2_title, submit_button }) => {
   const [businessName, setBusinessName] = useState('');
   const [businessLink, setBusinessLink] = useState('');
 
   return (
     <>
-      <p className="form-heading">
-        Choose this option below, if you&apos;d like to get additional information just about <span className="span1">one business</span>. We
-        will perform a Google Lighthouse analysis on the chosen business too!
-      </p>
+      <p className="form-heading">{form_title}</p>
       <form>
         <label id="business-name-label" htmlFor="business-name-input">
-          Enter the name of the business you&apos;re interested in:
+          {input1_title}
         </label>
         <input
           type="text"
@@ -25,7 +22,7 @@ const Form1 = () => {
           required
         ></input>
         <label id="business-link-label" htmlFor="business-link-input">
-          Enter the website link of the business you&apos;re interested in:
+          {input2_title}
         </label>
         <input
           type="text"
@@ -36,7 +33,7 @@ const Form1 = () => {
           required
         ></input>
         <Link href={`/results?businessName=${businessName}`} className="analyze-button">
-          ANALYZE
+          {submit_button}
         </Link>
       </form>
     </>

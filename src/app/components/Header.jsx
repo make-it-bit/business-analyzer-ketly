@@ -1,15 +1,15 @@
 import Link from 'next/link';
 
-const Header = () => {
+const Header = async ({ heading, subheading_1, subheading_2 }) => {
   return (
     <>
       <div className="header-container">
         <div className="logo">
-          <Link href="/">BUSINESS ANALYZER</Link>
+          <Link href="/">{heading}</Link>
         </div>
         <div className="links">
-          <Link href="/about">About</Link>
-          <Link href="/usage">How To Use</Link>
+          <Link href="/about">{subheading_1}</Link>
+          <Link href="/usage">{subheading_2}</Link>
         </div>
       </div>
     </>
